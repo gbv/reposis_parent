@@ -31,7 +31,7 @@
     <version>2020.06-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
-        <MCR.AppName>intr2dok</MCR.AppName>
+        <MCR.AppName>parent</MCR.AppName>
         <mycore.version>2020.06.3-SNAPSHOT</mycore.version>
     </properties>
     <profiles>
@@ -42,6 +42,9 @@
                     <name>env.CI</name>
                     <value>true</value>
                 </property>
+                <file>
+                    <exists>src/test/</exists>
+                </file>
             </activation>
             <properties>
                 <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
