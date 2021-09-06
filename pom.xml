@@ -255,7 +255,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <configuration>
                             <environmentVariables>
-                                <JAVA_OPTS>-DMCR.Home=${MCR.Home.Integration}</JAVA_OPTS>
+                                <JAVA_OPTS>-DMCR.Home=${MCR.Home.Integration} -DMCR.AppName=${MCR.AppName} -DMCR.ConfigDir=${MCR.Home.Integration}/${MCR.AppName}</JAVA_OPTS>
                             </environmentVariables>
                         </configuration>
                         <executions>
