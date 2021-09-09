@@ -32,22 +32,24 @@
     <mycore.version>2021.06.0-SNAPSHOT</mycore.version>
   </properties>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifestEntries>
-              <MCR-Artifact-Id>${project.artifactId}</MCR-Artifact-Id>
-              <MCR-Application-Module>${project.name}</MCR-Application-Module>
-              <Priority>99</Priority>
-              <MCR-Auto-Deploy>true</MCR-Auto-Deploy>
-            </manifestEntries>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifestEntries>
+                <MCR-Artifact-Id>${project.artifactId}</MCR-Artifact-Id>
+                <MCR-Application-Module>${project.name}</MCR-Application-Module>
+                <Priority>99</Priority>
+                <MCR-Auto-Deploy>true</MCR-Auto-Deploy>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
   <repositories>
     <!-- central is required for bibsonomy not to take over every artifact -->
