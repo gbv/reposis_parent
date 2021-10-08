@@ -5,7 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                     withMaven (maven: 'mvn', jdk: 'OJDK11') {
-                      sh "mvn clean install"
+                        withCredentials([usernamePassword(credentialsId: 'gpg', passwordVariable: 'KEYPW_VAR', usernameVariable: 'KEYID_VAR')])
+                        {
+                            sh 'mvn clean install -Dgpg.executable=gpg -Dgpg.keyname=${KEYID_VAR} -Dgpg.passphrase=${KEYPW_VAR}'
+                        }
                     }
             }
         }
