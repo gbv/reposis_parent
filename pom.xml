@@ -23,7 +23,7 @@
     <artifactId>mycore-parent</artifactId>
     <version>45</version>
   </parent>
-  <groupId>de.vzg.reposis</groupId>
+  <groupId>de.gbv.reposis</groupId>
   <artifactId>reposis_parent</artifactId>
   <version>2020.06-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -48,8 +48,30 @@
             </archive>
           </configuration>
         </plugin>
+        <plugin>
+          <!--
+          new projects need to deploy to s01.oss.sonatype.org
+          https://central.sonatype.org/news/20210223_new-users-on-s01/
+          -->
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.8</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrhs01</serverId>
+            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+      </plugin>
+    </plugins>
   </build>
   <repositories>
     <!-- central is required for bibsonomy not to take over every artifact -->
@@ -93,6 +115,32 @@
     </pluginRepository>
   </pluginRepositories>
   <profiles>
+    <profile>
+      <id>deploy-to-central</id>
+      <activation>
+        <property>
+          <name>!deploy-to-artifactory</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+      <distributionManagement>
+        <repository>
+          <id>ossrhs01</id>
+          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+          <id>ossrhs01</id>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
     <profile>
       <id>ci</id>
       <activation>
