@@ -16,8 +16,7 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with MyCoRe.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>de.gbv.reposis</groupId>
@@ -48,6 +47,7 @@
         <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
         <solr.home>${MCR.Home.Integration}/solr-home</solr.home>
         <solr.port>9108</solr.port>
+        <solrVersionString>8.11.1</solrVersionString>
         <tomcat.version>9.0.46</tomcat.version>
       </properties>
       <dependencies>
@@ -89,26 +89,18 @@
                 <configuration>
                   <target>
                     <!-- download file -->
-                    <get dest="${project.build.directory}/solr.home.zip" skipexisting="true"
-                         src="https://github.com/MyCoRe-Org/mir-solr/archive/refs/heads/main.zip" usetimestamp="true"
-                         verbose="false"/>
-                    <get dest="${project.build.directory}/solr.home.main.zip" skipexisting="true"
-                         src="https://github.com/MyCoRe-Org/mycore_solr_configset_main/archive/refs/heads/main.zip"
-                         usetimestamp="true" verbose="false"/>
-                    <get dest="${project.build.directory}/solr.home.classification.zip" skipexisting="true"
-                         src="https://github.com/MyCoRe-Org/mycore_solr_configset_classification/archive/refs/heads/main.zip"
-                         usetimestamp="true" verbose="false"/>
+                    <get dest="${project.build.directory}/solr.home.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mir-solr/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
+                    <get dest="${project.build.directory}/solr.home.main.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_main/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
+                    <get dest="${project.build.directory}/solr.home.classification.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_classification/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
 
                     <unzip dest="${solr.home}" src="${project.build.directory}/solr.home.zip">
-                      <globmapper from="mir-solr-main/*" to="*"/>
+                      <globmapper from="mir-solr-main/*" to="*" />
                     </unzip>
-                    <unzip dest="${solr.home}/configsets/mycore_main"
-                           src="${project.build.directory}/solr.home.main.zip">
-                      <globmapper from="mycore_solr_configset_main-main/*" to="*"/>
+                    <unzip dest="${solr.home}/configsets/mycore_main" src="${project.build.directory}/solr.home.main.zip">
+                      <globmapper from="mycore_solr_configset_main-main/*" to="*" />
                     </unzip>
-                    <unzip dest="${solr.home}/configsets/mycore_classification"
-                           src="${project.build.directory}/solr.home.classification.zip">
-                      <globmapper from="mycore_solr_configset_classification-main/*" to="*"/>
+                    <unzip dest="${solr.home}/configsets/mycore_classification" src="${project.build.directory}/solr.home.classification.zip">
+                      <globmapper from="mycore_solr_configset_classification-main/*" to="*" />
                     </unzip>
                   </target>
                 </configuration>
@@ -209,6 +201,7 @@
               <solrHome>${solr.home}</solrHome>
               <solrPort>${solr.port}</solrPort>
               <solrMirrorURL>https://archive.apache.org/dist/lucene/solr/</solrMirrorURL>
+              <solrVersionString>${solrVersionString}</solrVersionString>
             </configuration>
             <executions>
               <execution>
@@ -262,8 +255,7 @@
             <configuration>
               <environmentVariables>
                 <JAVA_OPTS>-DMCR.Home=${MCR.Home.Integration} -DMCR.AppName=${MCR.AppName}
-                  -DMCR.ConfigDir=${MCR.Home.Integration}/${MCR.AppName}
-                </JAVA_OPTS>
+                  -DMCR.ConfigDir=${MCR.Home.Integration}/${MCR.AppName}</JAVA_OPTS>
               </environmentVariables>
             </configuration>
             <executions>
@@ -289,8 +281,7 @@
                   <executable>bin${file.separator}mir.${script.suffix}</executable>
                   <arguments>
                     <argument>process
-                      ${project.basedir}/src/main/resources/setup_${MCR.AppName}.txt
-                    </argument>
+                      ${project.basedir}/src/main/resources/setup_${MCR.AppName}.txt</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -320,13 +311,11 @@
                 <properties>
                   <cargo.jvmargs>-DMCR.Home=${MCR.Home.Integration}
                     -DMCR.AppName=${MCR.AppName}
-                    -Djava.awt.headless=true
-                  </cargo.jvmargs>
+                    -Djava.awt.headless=true</cargo.jvmargs>
                   <cargo.rmi.port>9100</cargo.rmi.port>
                   <cargo.servlet.port>9107</cargo.servlet.port>
                   <!-- fixes IIIF identifier encoding issues -->
-                  <cargo.start.jvmargs>-Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
-                  </cargo.start.jvmargs>
+                  <cargo.start.jvmargs>-Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true</cargo.start.jvmargs>
                   <cargo.tomcat.ajp.port>8292</cargo.tomcat.ajp.port>
                   <cargo.tomcat.connector.maxHttpHeaderSize>8192</cargo.tomcat.connector.maxHttpHeaderSize>
                   <cargo.tomcat.uriencoding>UTF-8</cargo.tomcat.uriencoding>
