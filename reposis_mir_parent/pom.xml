@@ -48,6 +48,7 @@
         <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
         <solr.home>${MCR.Home.Integration}/solr-home</solr.home>
         <solr.port>9108</solr.port>
+        <solrVersionString>8.6.1</solrVersionString>
         <tomcat.version>9.0.46</tomcat.version>
       </properties>
       <dependencies>
@@ -209,6 +210,7 @@
               <solrHome>${solr.home}</solrHome>
               <solrPort>${solr.port}</solrPort>
               <solrMirrorURL>https://archive.apache.org/dist/lucene/solr/</solrMirrorURL>
+              <solrVersionString>${solrVersionString}</solrVersionString>
             </configuration>
             <executions>
               <execution>
