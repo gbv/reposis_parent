@@ -21,14 +21,14 @@
   <parent>
     <groupId>org.mycore</groupId>
     <artifactId>mycore-parent</artifactId>
-    <version>46</version>
+    <version>51</version>
   </parent>
   <groupId>de.gbv.reposis</groupId>
   <artifactId>reposis_parent</artifactId>
-  <version>2021.06-SNAPSHOT</version>
+  <version>2022.06-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <mycore.version>2021.06.2-SNAPSHOT</mycore.version>
+    <mycore.version>2022.06.1-SNAPSHOT</mycore.version>
   </properties>
   <build>
     <pluginManagement>
@@ -54,7 +54,7 @@
           -->
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
+          <version>${nexus-staging-maven-plugin.version}</version>
           <extensions>true</extensions>
           <configuration>
             <serverId>ossrhs01</serverId>
@@ -65,7 +65,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>${maven-gpg-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -73,7 +73,6 @@
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
       </plugin>
     </plugins>
   </build>
@@ -160,7 +159,7 @@
     <dependencies>
       <dependency>
         <groupId>org.mycore</groupId>
-        <artifactId>mycore</artifactId>
+        <artifactId>mycore-bom</artifactId>
         <version>${mycore.version}</version>
         <type>pom</type>
         <scope>import</scope>
