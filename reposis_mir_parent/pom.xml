@@ -197,7 +197,7 @@
           <plugin>
             <groupId>org.mycore.plugins</groupId>
             <artifactId>solr-runner-maven-plugin</artifactId>
-            <version>1.2-SNAPSHOT</version>
+            <version>1.4-SNAPSHOT</version>
             <configuration>
               <solrHome>${solr.home}</solrHome>
               <solrPort>${solr.port}</solrPort>
