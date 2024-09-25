@@ -21,17 +21,15 @@
   <parent>
     <groupId>de.gbv.reposis</groupId>
     <artifactId>reposis_parent</artifactId>
-    <version>2023.06-SNAPSHOT</version>
+    <version>2024.06-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-
   <artifactId>reposis_mir_parent</artifactId>
-  <version>2023.06-SNAPSHOT</version>
+  <version>2024.06-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <MCR.AppName>parent</MCR.AppName>
   </properties>
-
   <profiles>
     <profile>
       <id>ci</id>
@@ -92,18 +90,17 @@
                 <configuration>
                   <target>
                     <!-- download file -->
-                    <get dest="${project.build.directory}/solr.home.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mir-solr/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
-                    <get dest="${project.build.directory}/solr.home.main.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_main/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
-                    <get dest="${project.build.directory}/solr.home.classification.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_classification/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
-
+                    <get dest="${project.build.directory}/solr.home.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mir-solr/archive/refs/heads/main.zip" usetimestamp="true" verbose="false"/>
+                    <get dest="${project.build.directory}/solr.home.main.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_main/archive/refs/heads/main.zip" usetimestamp="true" verbose="false"/>
+                    <get dest="${project.build.directory}/solr.home.classification.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_classification/archive/refs/heads/main.zip" usetimestamp="true" verbose="false"/>
                     <unzip dest="${solr.home}" src="${project.build.directory}/solr.home.zip">
-                      <globmapper from="mir-solr-main/*" to="*" />
+                      <globmapper from="mir-solr-main/*" to="*"/>
                     </unzip>
                     <unzip dest="${solr.home}/configsets/mycore_main" src="${project.build.directory}/solr.home.main.zip">
-                      <globmapper from="mycore_solr_configset_main-main/*" to="*" />
+                      <globmapper from="mycore_solr_configset_main-main/*" to="*"/>
                     </unzip>
                     <unzip dest="${solr.home}/configsets/mycore_classification" src="${project.build.directory}/solr.home.classification.zip">
-                      <globmapper from="mycore_solr_configset_classification-main/*" to="*" />
+                      <globmapper from="mycore_solr_configset_classification-main/*" to="*"/>
                     </unzip>
                   </target>
                 </configuration>
@@ -384,5 +381,4 @@
       </properties>
     </profile>
   </profiles>
-
 </project>
