@@ -26,6 +26,7 @@
   <groupId>de.gbv.reposis</groupId>
   <artifactId>reposis_parent</artifactId>
   <version>2023.06-SNAPSHOT</version>
+  <!-- test -->
   <packaging>pom</packaging>
   <properties>
     <mycore.version>2023.06.3-SNAPSHOT</mycore.version>
