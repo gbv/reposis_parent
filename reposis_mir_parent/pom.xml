@@ -171,6 +171,11 @@
                       <artifactId>${project.artifactId}</artifactId>
                       <version>${project.version}</version>
                     </artifactItem>
+                    <artifactItem>
+                      <groupId>de.gbv.reposis</groupId>
+                      <artifactId>reposis_common</artifactId>
+                      <version>2023.06-SNAPSHOT</version>
+                    </artifactItem>
                   </artifactItems>
                 </configuration>
               </execution>
