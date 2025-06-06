@@ -105,17 +105,6 @@
       <url>https://dev.bibsonomy.org/maven2/</url>
     </repository>
   </repositories>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.mycore</groupId>
-        <artifactId>mycore-bom</artifactId>
-        <version>${mycore.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <profiles>
     <profile>
       <id>deploy-to-sonatype</id>
@@ -137,6 +126,17 @@
       </build>
     </profile>
   </profiles>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.mycore</groupId>
+        <artifactId>mycore-bom</artifactId>
+        <version>${mycore.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <modules>
     <module>reposis_mir_parent</module>
   </modules>
