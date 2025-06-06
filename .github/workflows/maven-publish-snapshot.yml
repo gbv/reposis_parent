@@ -30,7 +30,7 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
       - name: Publish to OSSRH with Apache Maven
-        run: mvn --batch-mode deploy -P deploy-to-central
+        run: mvn --batch-mode deploy -P deploy-to-sonatype
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
