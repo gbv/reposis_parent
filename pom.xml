@@ -93,6 +93,17 @@
       <name>Central Portal Snapshots</name>
       <url>https://central.sonatype.com/repository/maven-snapshots/</url>
     </repository>
+	<!-- oss is needed for mycore 2022.06 -->
+	<repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
     <repository>
       <snapshots>
         <enabled>false</enabled>
