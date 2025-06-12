@@ -58,9 +58,6 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-      </plugin>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
