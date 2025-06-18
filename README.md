@@ -1,33 +1,10 @@
-# Migration von 2022 zu 2023
+# Migration from 2023 to 2024
 
-Unter src/test/integration/$appname/resources/META-INF/persistence.xml
+**Note**: *Persistence.xml* under *src/test/integration/$appname/resources/META-INF/*
+is no longer used. The database is now configured via mycore properties.
 
-```xml
-<persistence>
-    ...
-    <!-- neue mappings hinzufügen -->
-    <mapping-file>META-INF/mycore-jobqueue-mappings.xml</mapping-file>
-    <mapping-file>META-INF/mycore-viewer-mappings.xml</mapping-file>
-    ...
-    
-    <properties>
-        ...
-        <!-- neue properties hinzufügen -->
-        <property name="hibernate.auto_quote_keyword" value="true" />
-        ...
-    </properties>
-</persistence>
-```
+**Note**: Java 21 and above is required.
 
-Remove the following files from pom.xml:
-
-```xml
-
-<dependency>
-    <groupId>com.sun.activation</groupId>
-    <artifactId>jakarta.activation</artifactId>
-</dependency>
-```
 
 Change the version in the pom.xml:
 
@@ -36,10 +13,10 @@ Change the version in the pom.xml:
     <parent>
         <groupId>de.gbv.reposis</groupId>
         <artifactId>reposis_mir_parent</artifactId>
-        <version>2023.06-SNAPSHOT</version> <!-- this -->
+        <version>2024.06-SNAPSHOT</version> <!-- this -->
     </parent>
 
     <artifactId>reposis_$id</artifactId>
-    <version>2023.06-SNAPSHOT</version> <!-- this -->
+    <version>2024.06-SNAPSHOT</version> <!-- this -->
 </project>
 ```
