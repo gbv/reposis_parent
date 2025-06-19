@@ -30,7 +30,7 @@
   <properties>
     <java.target.version>11</java.target.version>
     <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
-    <mycore.version>2020.06.3-SNAPSHOT</mycore.version>
+    <mycore.version>2020.06.4-SNAPSHOT</mycore.version>
   </properties>
   <build>
     <pluginManagement>
