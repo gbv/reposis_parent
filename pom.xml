@@ -21,14 +21,16 @@
   <parent>
     <groupId>org.mycore</groupId>
     <artifactId>mycore-parent</artifactId>
-    <version>46</version>
+    <version>57</version>
   </parent>
   <groupId>de.gbv.reposis</groupId>
   <artifactId>reposis_parent</artifactId>
   <version>2021.06-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <mycore.version>2021.06.2-SNAPSHOT</mycore.version>
+    <java.target.version>11</java.target.version>
+    <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
+    <mycore.version>2021.06.2</mycore.version>
   </properties>
   <build>
     <pluginManagement>
@@ -48,21 +50,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <!--
-          new projects need to deploy to s01.oss.sonatype.org
-          https://central.sonatype.org/news/20210223_new-users-on-s01/
-          -->
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
-          <extensions>true</extensions>
-          <configuration>
-            <serverId>ossrhs01</serverId>
-            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>3.0.1</version>
@@ -71,9 +58,9 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.8</version>
       </plugin>
     </plugins>
   </build>
@@ -94,18 +81,9 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-      <id>ossrhs01</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <id>central-portal-snapshots</id>
+      <name>Central Portal Snapshots</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
     </repository>
     <repository>
       <snapshots>
@@ -116,44 +94,25 @@
       <url>https://dev.bibsonomy.org/maven2/</url>
     </repository>
   </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </pluginRepository>
-  </pluginRepositories>
   <profiles>
     <profile>
-      <id>deploy-to-central</id>
-      <activation>
-        <property>
-          <name>!deploy-to-artifactory</name>
-        </property>
-      </activation>
+      <id>deploy-to-sonatype</id>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.7.0</version>
+            <extensions>true</extensions>
+            <configuration>
+              <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots</centralSnapshotsUrl>
+              <publishingServerId>sonatype-central</publishingServerId>
+              <autoPublish>true</autoPublish>
+              <waitUntil>published</waitUntil>
+            </configuration>
           </plugin>
         </plugins>
       </build>
-      <distributionManagement>
-        <repository>
-          <id>ossrhs01</id>
-          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <snapshotRepository>
-          <id>ossrhs01</id>
-          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-      </distributionManagement>
     </profile>
   </profiles>
   <dependencyManagement>
