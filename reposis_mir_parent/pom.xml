@@ -21,12 +21,12 @@
   <parent>
     <groupId>de.gbv.reposis</groupId>
     <artifactId>reposis_parent</artifactId>
-    <version>2024.06-SNAPSHOT</version>
+    <version>2025.06-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>reposis_mir_parent</artifactId>
-  <version>2024.06-SNAPSHOT</version>
+  <version>2025.06-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <MCR.AppName>parent</MCR.AppName>
@@ -48,7 +48,7 @@
         <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
         <solr.home>${MCR.Home.Integration}/solr-home</solr.home>
         <solr.port>9108</solr.port>
-        <solrVersionString>8.11.2</solrVersionString>
+        <solrVersionString>9.8.1</solrVersionString>
         <tomcat.version>10.1.11</tomcat.version>
       </properties>
       <dependencies>
@@ -67,13 +67,13 @@
         <dependency>
           <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-api</artifactId>
-          <version>4.22.0</version>
+          <version>4.31.0</version>
           <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>org.seleniumhq.selenium</groupId>
           <artifactId>selenium-support</artifactId>
-          <version>4.22.0</version>
+          <version>4.31.0</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -174,7 +174,7 @@
                     <artifactItem>
                       <groupId>de.gbv.reposis</groupId>
                       <artifactId>reposis_common</artifactId>
-                      <version>2024.06-SNAPSHOT</version>
+                      <version>2025.06-SNAPSHOT</version>
                     </artifactItem>
                   </artifactItems>
                 </configuration>
