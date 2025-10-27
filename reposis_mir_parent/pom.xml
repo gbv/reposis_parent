@@ -47,8 +47,8 @@
       <properties>
         <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
         <solr.home>${MCR.Home.Integration}/solr-home</solr.home>
-        <solrHomeTemplate>${project.basedir}/src/test/integration/solr</solrHomeTemplate>
         <solr.port>9108</solr.port>
+        <solrHomeTemplate>${project.basedir}/src/test/integration/solr</solrHomeTemplate>
         <solrVersionString>8.11.2</solrVersionString>
         <tomcat.version>10.1.11</tomcat.version>
       </properties>
