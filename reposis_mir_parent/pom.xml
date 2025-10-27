@@ -47,6 +47,7 @@
       <properties>
         <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
         <solr.home>${MCR.Home.Integration}/solr-home</solr.home>
+        <solrHomeTemplate>${project.basedir}/src/test/integration/solr</solrHomeTemplate>
         <solr.port>9108</solr.port>
         <solrVersionString>8.11.2</solrVersionString>
         <tomcat.version>10.1.11</tomcat.version>
@@ -79,37 +80,6 @@
       </dependencies>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>download-files</id>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <phase>pre-integration-test</phase>
-                <configuration>
-                  <target>
-                    <!-- download file -->
-                    <get dest="${project.build.directory}/solr.home.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mir-solr/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
-                    <get dest="${project.build.directory}/solr.home.main.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_main/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
-                    <get dest="${project.build.directory}/solr.home.classification.zip" skipexisting="true" src="https://github.com/MyCoRe-Org/mycore_solr_configset_classification/archive/refs/heads/main.zip" usetimestamp="true" verbose="false" />
-
-                    <unzip dest="${solr.home}" src="${project.build.directory}/solr.home.zip">
-                      <globmapper from="mir-solr-main/*" to="*" />
-                    </unzip>
-                    <unzip dest="${solr.home}/configsets/mycore_main" src="${project.build.directory}/solr.home.main.zip">
-                      <globmapper from="mycore_solr_configset_main-main/*" to="*" />
-                    </unzip>
-                    <unzip dest="${solr.home}/configsets/mycore_classification" src="${project.build.directory}/solr.home.classification.zip">
-                      <globmapper from="mycore_solr_configset_classification-main/*" to="*" />
-                    </unzip>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
           <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <executions>
@@ -210,11 +180,13 @@
               <solrPort>${solr.port}</solrPort>
               <solrMirrorURL>https://archive.apache.org/dist/lucene/solr/</solrMirrorURL>
               <solrVersionString>${solrVersionString}</solrVersionString>
+              <cloudMode>true</cloudMode>
             </configuration>
             <executions>
               <execution>
                 <id>start-solr</id>
                 <goals>
+                  <goal>copyHome</goal>
                   <goal>start</goal>
                 </goals>
                 <phase>pre-integration-test</phase>
@@ -267,6 +239,18 @@
               </environmentVariables>
             </configuration>
             <executions>
+              <execution>
+                <id>setup-solr-cloud</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>pre-integration-test</phase>
+                <configuration>
+                  <workingDirectory>${project.build.directory}/dependency/mir-cli-${mycore.version}</workingDirectory>
+                  <executable>bin${file.separator}mir.${script.suffix}</executable>
+                  <arguments>process ${project.build.directory}/dependency/mir-cli-${mycore.version}/config/setup-solrcloud.txt</arguments>
+                </configuration>
+              </execution>
               <execution>
                 <id>setup-cli</id>
                 <goals>
