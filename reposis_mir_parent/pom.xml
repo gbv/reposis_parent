@@ -144,7 +144,7 @@
                     <artifactItem>
                       <groupId>de.gbv.reposis</groupId>
                       <artifactId>reposis_common</artifactId>
-                      <version>2025.12-SNAPSHOT</version>
+                      <version>2026.06-SNAPSHOT</version>
                     </artifactItem>
                   </artifactItems>
                 </configuration>

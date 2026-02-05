@@ -25,13 +25,13 @@
   </parent>
   <groupId>de.gbv.reposis</groupId>
   <artifactId>reposis_parent</artifactId>
-  <version>2025.12-SNAPSHOT</version>
+  <version>2026.06-SNAPSHOT</version>
   <!-- test -->
   <packaging>pom</packaging>
   <properties>
     <java.target.version>21</java.target.version>
     <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
-    <mycore.version>2025.12.2-SNAPSHOT</mycore.version>
+    <mycore.version>2026.06.0-SNAPSHOT</mycore.version>
   </properties>
   <build>
     <pluginManagement>
