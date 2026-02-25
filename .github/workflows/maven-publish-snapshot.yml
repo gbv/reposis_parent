@@ -9,6 +9,7 @@ on:
       - 'main'
       - 'master'
       - '2022.6.x'
+  workflow_dispatch:
 
 jobs:
   build:
