@@ -5,6 +5,7 @@ name: Maven Snapshot deploy
 
 on:
   push:
+    workflow_dispatch:
     branches:
       - 'main'
       - '2022.06.x'
