@@ -48,6 +48,7 @@
         <MCR.Home.Integration>${project.build.directory}/test-classes</MCR.Home.Integration>
         <solr.home>${MCR.Home.Integration}/solr-home</solr.home>
         <solr.port>9108</solr.port>
+        <solr.mirror.url>https://nextcloud.gbv.de/nextcloud/public.php/dav/files/QyPjMHJFBMpLxXz/lucene/solr/</solr.mirror.url>
         <solrVersionString>8.11.2</solrVersionString>
         <tomcat.version>10.1.11</tomcat.version>
       </properties>
@@ -208,7 +209,7 @@
             <configuration>
               <solrHome>${solr.home}</solrHome>
               <solrPort>${solr.port}</solrPort>
-              <solrMirrorURL>https://archive.apache.org/dist/lucene/solr/</solrMirrorURL>
+              <solrMirrorURL>${solr.mirror.url}</solrMirrorURL>
               <solrVersionString>${solrVersionString}</solrVersionString>
             </configuration>
             <executions>
